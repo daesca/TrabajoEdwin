@@ -1,16 +1,10 @@
-var url = "src/main.php";
+var url = "http://localhost:8080/TrabajoEdwin/src/main.php";
 var rbody = ["VB"];
 var xbody = [];
 var functions = {
 	"bodiesrx" : function(numbpanels){
 		
 		var cont = 1;
-		//var suma = 2+1;
-		//var s = suma.toString();
-		//var element = "Hola".concat(1+2);
-		//rbody.push("Hola" + 2);
-		//rbody.push("Hola".concat(2));
-		//console.log(rbody);
 		$("#xheaders").append("<th>Matriz X</th>");
 		$("#rbody").append("<td>"+ rbody[0] +"</td>")
 		$("#rheaders").append("<th>Matriz R</th>");
@@ -49,9 +43,15 @@ var functions = {
 			headers: {"Access-Control-Allow-Origin":"*", 'Content-Type':'application/json'},
 			url: url,
 			type: "GET",
-			data: {opc:1, numbpanels: numpanels}
+			data: {numpanels: numpanels}
 		}).done(function(response){
 			console.log(response);
+			$("#voltin").html("");
+			for (var i in response[0]) {
+				$("#voltin").append("<li>V"+response[0][i][0]+" = "+ response[0][i][1] +" / "+ response[0][i][2] +"</li>");
+			}
+			/*
+			*/
 		});
 	}
 }
